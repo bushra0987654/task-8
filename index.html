@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+        </div>
+        <div>
+          <h1>Study Planner</h1>
+          <p class="subtitle" id="today-label">Homework, assignments and study goals</p>
+        </div>
+      </div>
+      <button id="theme-toggle" class="icon-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </header>
+
+    <section class="card overview" aria-label="Task overview">
+      <div class="stats">
+        <div class="stat">
+          <small>Total tasks</small>
+          <span id="stat-total">0</span>
+        </div>
+        <div class="stat">
+          <small>Completed</small>
+          <span id="stat-completed" class="c-success">0</span>
+        </div>
+        <div class="stat">
+          <small>Pending</small>
+          <span id="stat-pending" class="c-accent">0</span>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Overall progress</span><span id="progress-text">0%</span></div>
+        <div class="progress"><div id="progress-bar"></div></div>
+      </div>
+    </section>
+
+    <form id="task-form" class="card" autocomplete="off">
+      <h2 class="section-title">New task</h2>
+      <input id="task-title" type="text" placeholder="What do you need to get done?" maxlength="120" required>
+      <div class="form-row">
+        <label>Due date
+          <input id="task-due" type="date">
+        </label>
+        <label>Priority
+          <select id="task-priority">
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </label>
+        <label>Category
+          <select id="task-category">
+            <option>Homework</option>
+            <option>Assignment</option>
+            <option>Exam</option>
+            <option>Personal</option>
+          </select>
+        </label>
+        <button class="btn primary" type="submit">Add task</button>
+      </div>
+    </form>
+
+    <section class="card controls">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="search" type="search" placeholder="Search tasks by name">
+      </div>
+      <div class="control-row">
+        <div class="segmented" role="group" aria-label="Filter by status">
+          <button type="button" class="seg active" data-status="all">All</button>
+          <button type="button" class="seg" data-status="pending">Pending</button>
+          <button type="button" class="seg" data-status="completed">Completed</button>
+        </div>
+        <select id="filter-category" aria-label="Filter by category">
+          <option value="all">All categories</option>
+          <option>Homework</option>
+          <option>Assignment</option>
+          <option>Exam</option>
+          <option>Personal</option>
+        </select>
+        <select id="sort" aria-label="Sort tasks">
+          <option value="manual">Manual order</option>
+          <option value="due">Due date</option>
+          <option value="priority">Priority</option>
+        </select>
+      </div>
+    </section>
+
+    <p id="hint" class="hint"></p>
+    <ul id="task-list" class="task-list"></ul>
+
+    <div id="empty" class="empty" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg>
+      <p id="empty-text">No tasks to show.</p>
+    </div>
+
+    <footer class="footer">
+      <button id="clear-completed" class="btn ghost small" type="button">Clear completed</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
